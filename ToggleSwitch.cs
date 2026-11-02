@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -45,14 +46,14 @@ namespace CustomToggleButton
     ///     <MyNamespace:CustomToggleButton/>
     ///
     /// </summary>
-    public class CustomToggleButtonAdv : Control
+    public class ToggleSwitch : Control
     {
-        static CustomToggleButtonAdv()
+        static ToggleSwitch()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomToggleButtonAdv), new FrameworkPropertyMetadata(typeof(CustomToggleButtonAdv)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ToggleSwitch), new FrameworkPropertyMetadata(typeof(ToggleSwitch)));
         }
         public static readonly DependencyProperty IsOnProperty = 
-            DependencyProperty.Register("IsOn", typeof(bool), typeof(CustomToggleButtonAdv), new PropertyMetadata(false));
+            DependencyProperty.Register("IsOn", typeof(bool), typeof(ToggleSwitch), new PropertyMetadata(false));
        
         public event EventHandler? MouseClick;
         protected virtual void OnMouseClick(EventArgs e)
@@ -67,5 +68,9 @@ namespace CustomToggleButton
         
         
         }
+        protected override AutomationPeer OnCreateAutomationPeer()
+        {
+            return new ToggleSwitchAutomationPeer(this);
+        }   
     }
 }

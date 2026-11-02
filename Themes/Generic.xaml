@@ -4,10 +4,10 @@
     xmlns:local="clr-namespace:CustomToggleButton">
 
 
-    <Style TargetType="{x:Type local:CustomToggleButtonAdv}">
+    <Style TargetType="{x:Type local:ToggleSwitch}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CustomToggleButtonAdv}">
+                <ControlTemplate TargetType="{x:Type local:ToggleSwitch}">
                     <Border x:Name="Track" Width="44" Height="24" CornerRadius="12"
                             Background="Gray">
                         <Ellipse x:Name="Knob" Width="18" Height="18" Fill="White"
