@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:ToggleSwitch IsOn="False" AutomationProperties.Name="ToggleSwitch" />
+        <local:ToggleSwitch IsOn="False" Label="Toggle Switch" AutomationProperties.Name="ToggleSwitch" />
     </Grid>
 </Window>

@@ -54,7 +54,10 @@ namespace CustomToggleButton
         }
         public static readonly DependencyProperty IsOnProperty = 
             DependencyProperty.Register("IsOn", typeof(bool), typeof(ToggleSwitch), new PropertyMetadata(false));
-       
+
+        public static readonly DependencyProperty LabelProperty =
+            DependencyProperty.Register("Label", typeof(string), typeof(ToggleSwitch), new PropertyMetadata(string.Empty)); 
+
         public event EventHandler? MouseClick;
         protected virtual void OnMouseClick(EventArgs e)
         {
@@ -68,9 +71,24 @@ namespace CustomToggleButton
         
         
         }
+
+        public string Label
+        {
+            get { return (string)GetValue(LabelProperty); }
+            set { SetValue(LabelProperty, value); }
+        }
         protected override AutomationPeer OnCreateAutomationPeer()
         {
             return new ToggleSwitchAutomationPeer(this);
-        }   
+        }
+        internal void Toggle() 
+        {
+            if (IsEnabled)
+            {
+                IsOn = !IsOn;
+            }
+        
+        }
+
     }
 }
