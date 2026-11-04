@@ -5,23 +5,48 @@
 
 
     <Style TargetType="{x:Type local:ToggleSwitch}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleSwitch}">
-                    <Border x:Name="Track" Width="44" Height="24" CornerRadius="12"
-                            Background="Gray">
-                        <Ellipse x:Name="Knob" Width="18" Height="18" Fill="White"
-                                 HorizontalAlignment="Left" Margin="3,0" />
+                    <!-- Focus ring: visible only for keyboard focus, uses a system colour for high contrast. -->
+                    <Border x:Name="FocusRing" BorderThickness="2" CornerRadius="6" Padding="4"
+                        BorderBrush="Transparent" Background="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="Track" Width="44" Height="24" CornerRadius="12"
+                                Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"
+                                BorderThickness="1"
+                                BorderBrush="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}">
+                                <Ellipse x:Name="Knob" Width="16" Height="16"
+                                     Fill="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                                     HorizontalAlignment="Left" Margin="3,0" />
+                            </Border>
+                            <TextBlock Text="{TemplateBinding Label}" Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="{TemplateBinding Foreground}" />
+                        </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsOn" Value="True">
-                            <Setter TargetName="Track" Property="Background" Value="SeaGreen" />
+                            <Setter TargetName="Track" Property="Background"
+                                Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                            <Setter TargetName="Knob" Property="Fill"
+                                Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
                             <Setter TargetName="Knob" Property="HorizontalAlignment" Value="Right" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="FocusRing" Property="BorderBrush"
+                                Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Cursor" Value="Arrow" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+        </Style>
 
 </ResourceDictionary>

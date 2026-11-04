@@ -51,17 +51,21 @@ namespace CustomToggleButton
         static ToggleSwitch()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ToggleSwitch), new FrameworkPropertyMetadata(typeof(ToggleSwitch)));
+            FocusableProperty.OverrideMetadata(typeof(ToggleSwitch), new FrameworkPropertyMetadata(true));  
+            IsTabStopProperty.OverrideMetadata(typeof(ToggleSwitch), new FrameworkPropertyMetadata(true));  
         }
-        public static readonly DependencyProperty IsOnProperty = 
-            DependencyProperty.Register("IsOn", typeof(bool), typeof(ToggleSwitch), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsOnProperty =
+            DependencyProperty.Register("IsOn", typeof(bool), typeof(ToggleSwitch), new PropertyMetadata(false, IsOnChanged));
 
         public static readonly DependencyProperty LabelProperty =
             DependencyProperty.Register("Label", typeof(string), typeof(ToggleSwitch), new PropertyMetadata(string.Empty)); 
 
-        public event EventHandler? MouseClick;
-        protected virtual void OnMouseClick(EventArgs e)
+      
+        private static void IsOnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MouseClick?.Invoke(this, e);
+            var control = (ToggleSwitch)d;
+            var peer = (ToggleSwitchAutomationPeer)UIElementAutomationPeer.FromElement(control);    
+            peer?.RaiseToggleStateChanged((bool)e.OldValue, (bool)e.NewValue);  
         }
 
         public bool IsOn
@@ -88,6 +92,23 @@ namespace CustomToggleButton
                 IsOn = !IsOn;
             }
         
+        }
+
+        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
+        {
+            Focus();
+            Toggle();
+            e.Handled = true;
+            base.OnMouseLeftButtonUp(e);
+        }
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.Key == Key.Space || e.Key == Key.Enter)
+            {
+                Toggle();
+                e.Handled = true;
+            }
+            base.OnKeyDown(e);
         }
 
     }

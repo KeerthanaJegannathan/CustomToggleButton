@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:ToggleSwitch IsOn="False" Label="Toggle Switch" AutomationProperties.Name="ToggleSwitch" />
+        <StackPanel>
+        <local:ToggleSwitch Label="Dark mode" HorizontalAlignment="Left"
+                    AutomationProperties.HelpText="Switches the app between light and dark appearance." />
+        <local:ToggleSwitch Label="Email notifications" Margin="0,12,0,0"
+                    HorizontalAlignment="Left" IsOn="True" />
+        <local:ToggleSwitch Label="Disabled example" Margin="0,12,0,0"
+                    HorizontalAlignment="Left" IsEnabled="False" />
+        </StackPanel>
     </Grid>
 </Window>
