@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="RatingControl.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="ToggleSwitch.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
