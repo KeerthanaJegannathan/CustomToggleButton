@@ -72,5 +72,10 @@ namespace CustomToggleButton
         {
             throw new NotImplementedException();
         }
+
+        internal void RaiseIsReadOnlyChanged(bool oldValue, bool newValue)
+        {
+            throw new NotImplementedException();
+        }
     }   
 }
