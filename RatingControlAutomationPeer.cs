@@ -70,12 +70,12 @@ namespace CustomToggleButton
 
         internal void RaiseValueChanged(double oldValue, double newValue)
         {
-            throw new NotImplementedException();
+            RaisePropertyChangedEvent(RangeValuePatternIdentifiers.ValueProperty, oldValue, newValue);  
         }
 
         internal void RaiseIsReadOnlyChanged(bool oldValue, bool newValue)
         {
-            throw new NotImplementedException();
+            RaisePropertyChangedEvent(RangeValuePatternIdentifiers.IsReadOnlyProperty, oldValue, newValue); 
         }
     }   
 }

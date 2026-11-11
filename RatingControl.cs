@@ -136,6 +136,7 @@ namespace CustomToggleButton
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = (RatingControl)d;
+            control.UpdateStars();  
             var peer = (RatingControlAutomationPeer)UIElementAutomationPeer.FromElement(control);
             peer?.RaiseValueChanged((double)e.OldValue, (double)e.NewValue);
         }
@@ -150,7 +151,7 @@ namespace CustomToggleButton
         {
             var control = (RatingControl)d;
             var peer = (RatingControlAutomationPeer)UIElementAutomationPeer.FromElement(control);
-            peer?.RaiseIsReadOnlyChanged((bool)e.OldValue, (bool)e.NewValue);)
+            peer?.RaiseIsReadOnlyChanged((bool)e.OldValue, (bool)e.NewValue);
         }
         protected override AutomationPeer OnCreateAutomationPeer()
         {
@@ -261,3 +262,4 @@ namespace CustomToggleButton
         }
     }
     }
+

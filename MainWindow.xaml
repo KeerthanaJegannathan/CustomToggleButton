@@ -8,12 +8,22 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
-        <local:ToggleSwitch Label="Dark mode" HorizontalAlignment="Left"
+            <TextBlock Text="ToggleSwitch (accessible)" FontWeight="SemiBold" Margin="0,24,0,8" />
+            <local:ToggleSwitch Label="Dark mode" HorizontalAlignment="Left"
                     AutomationProperties.HelpText="Switches the app between light and dark appearance." />
         <local:ToggleSwitch Label="Email notifications" Margin="0,12,0,0"
                     HorizontalAlignment="Left" IsOn="True" />
         <local:ToggleSwitch Label="Disabled example" Margin="0,12,0,0"
                     HorizontalAlignment="Left" IsEnabled="False" />
+
+
+            <TextBlock Text="RatingControl (RangeValue pattern)"
+                   FontWeight="SemiBold" Margin="0,24,0,8" />
+            <local:RatingControl Value="3" HorizontalAlignment="Left"
+                             AutomationProperties.Name="Product rating" />
+            <local:RatingControl Value="4" IsReadOnly="True" Margin="0,8,0,0"
+                             HorizontalAlignment="Left"
+                             AutomationProperties.Name="Average customer rating" />
         </StackPanel>
     </Grid>
 </Window>
